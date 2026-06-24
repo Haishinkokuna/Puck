@@ -1,0 +1,81 @@
+{
+  "app": {
+    "name": "Puck",
+    "tagline": "Tu Misión Te Espera"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "register": "Crear Cuenta",
+    "logout": "Cerrar Sesión",
+    "email": "Correo Electrónico",
+    "username": "Nombre de Usuario",
+    "password": "Contraseña",
+    "loginTitle": "Bienvenido de Nuevo, Héroe",
+    "loginSubtitle": "Continúa tu misión",
+    "registerTitle": "Comienza tu Aventura",
+    "registerSubtitle": "Toda leyenda tiene un inicio",
+    "noAccount": "¿Sin cuenta aún?",
+    "hasAccount": "¿Ya eres un héroe?",
+    "loading": "Autenticando..."
+  },
+  "board": {
+    "myBoards": "Tableros de Misiones",
+    "newBoard": "Nuevo Tablero",
+    "boardName": "Nombre del Tablero",
+    "description": "Descripción",
+    "createBoard": "Crear Tablero",
+    "deleteBoard": "Eliminar Tablero",
+    "noBoards": "Sin tableros aún. ¡Crea tu primer tablero de misiones!",
+    "tasks": "tareas"
+  },
+  "task": {
+    "newTask": "Nueva Tarea",
+    "taskTitle": "Título de la Tarea",
+    "taskDesc": "Descripción",
+    "xpReward": "Recompensa XP",
+    "priority": "Prioridad",
+    "dueDate": "Fecha Límite",
+    "createTask": "Crear Tarea",
+    "complete": "Completar",
+    "completeTask": "Marcar Completa",
+    "deleteTask": "Eliminar",
+    "alreadyDone": "Completada",
+    "priorities": {
+      "low":       "Baja",
+      "normal":    "Normal",
+      "high":      "Alta",
+      "legendary": "Legendaria"
+    }
+  },
+  "hud": {
+    "level":       "Nivel",
+    "xpToNext":    "XP para el siguiente nivel",
+    "totalXp":     "XP Total",
+    "class":       "Clase",
+    "title":       "Título",
+    "leaderboard": "Clasificación",
+    "rank":        "Posición"
+  },
+  "levelUp": {
+    "title":       "¡Subiste de Nivel!",
+    "youAreNow":   "Ahora eres un",
+    "xpEarned":    "XP Ganados",
+    "continue":    "Continuar",
+    "newClass":    "Nueva Clase Desbloqueada"
+  },
+  "errors": {
+    "generic":        "Algo salió mal. Por favor intenta de nuevo.",
+    "unauthorized":   "Sesión expirada. Inicia sesión de nuevo.",
+    "emailTaken":     "Ya existe una cuenta con este correo.",
+    "invalidCreds":   "Correo o contraseña incorrectos.",
+    "taskDone":       "Esta tarea ya fue completada."
+  },
+  "common": {
+    "save":    "Guardar",
+    "cancel":  "Cancelar",
+    "delete":  "Eliminar",
+    "edit":    "Editar",
+    "loading": "Cargando...",
+    "confirm": "Confirmar"
+  }
+}

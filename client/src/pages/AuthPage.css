@@ -1,0 +1,143 @@
+/* src/pages/AuthPage.css */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 36px;
+}
+
+.auth-logo {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-logo-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--gold-bright);
+  text-shadow: var(--shadow-gold);
+  display: block;
+}
+
+.auth-logo-sub {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+  display: block;
+}
+
+/* The decorative crystal diamond above the logo */
+.auth-crystal {
+  width: 48px; height: 48px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+
+.auth-crystal::before {
+  content: '◆';
+  font-size: 2.5rem;
+  color: var(--crystal);
+  text-shadow: 0 0 20px var(--aqua-glow), 0 0 40px rgba(74,158,219,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: crystalPulse 3s ease-in-out infinite;
+}
+
+@keyframes crystalPulse {
+  0%, 100% { text-shadow: 0 0 20px var(--aqua-glow), 0 0 40px rgba(74,158,219,0.3); }
+  50%       { text-shadow: 0 0 30px var(--aqua-glow), 0 0 60px rgba(74,158,219,0.5); }
+}
+
+.auth-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  text-align: center;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  letter-spacing: 0.05em;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.auth-switch button {
+  background: none;
+  border: none;
+  color: var(--aqua);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 6px;
+  padding: 0;
+  transition: color var(--transition-fast);
+}
+
+.auth-switch button:hover { color: var(--text-primary); }
+
+.auth-error {
+  background: rgba(232,93,74,0.1);
+  border: 1px solid rgba(232,93,74,0.3);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--legendary);
+  text-align: center;
+}
+
+.lang-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.lang-btn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  color: var(--text-sub);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: all var(--transition-fast);
+}
+
+.lang-btn.active,
+.lang-btn:hover {
+  color: var(--aqua);
+  border-color: var(--border-active);
+  background: var(--aqua-dim);
+}

@@ -1,0 +1,14 @@
+{
+  "name": "puck-server",
+  "version": "1.0.0",
+  "description": "RPG-themed Kanban board API — Node/Express backend",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon --env-file=.env src/app.js",
+    "test": "echo \"Tests coming in a future step\" && exit 0"
+  },
+  "keywords": ["kanban", "rpg", "express", "postgresql"],
+  "author": "Feriku",
+  "license": "ISC"
+}

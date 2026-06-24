@@ -1,0 +1,149 @@
+/* src/pages/BoardPage.css */
+.board-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--bg-glass);
+  border-bottom: 1px solid var(--border-glass);
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+}
+
+.board-nav-left, .board-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.board-name {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.board-columns {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  overflow-x: auto;
+  flex: 1;
+  position: relative;
+  z-index: 5;
+  /* Custom scrollbar for horizontal scroll */
+  scrollbar-width: thin;
+  scrollbar-color: var(--crystal) var(--bg-deep);
+}
+
+.board-columns::-webkit-scrollbar { height: 8px; }
+
+.kanban-column {
+  width: 320px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  max-height: calc(100vh - 100px);
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.column-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+}
+
+.column-count {
+  font-size: 0.75rem !important;
+  min-width: 24px;
+  justify-content: center;
+}
+
+.column-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 4px; /* Space for scrollbar */
+}
+
+.column-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  opacity: 0.5;
+}
+
+.add-task-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  background: rgba(8,9,26,0.4);
+  border: 1px dashed var(--border-glass);
+  border-radius: var(--radius-md);
+  color: var(--text-sub);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.add-task-btn:hover {
+  background: var(--bg-glass-2);
+  border-color: var(--crystal);
+  color: var(--aqua);
+  box-shadow: 0 0 12px var(--aqua-dim);
+}
+
+.task-form {
+  margin-top: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-form-desc {
+  resize: none;
+  font-size: 0.85rem;
+}
+
+.task-form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.task-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.board-loading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

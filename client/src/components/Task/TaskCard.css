@@ -1,0 +1,136 @@
+/* src/components/Task/TaskCard.css */
+.task-card {
+  display: flex;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  cursor: default;
+  position: relative;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card), 0 0 20px rgba(74,158,219,0.1);
+}
+
+/* Done state — golden glow and muted content */
+.task-card--done {
+  opacity: 0.7;
+  border-color: var(--border-gold) !important;
+  box-shadow: var(--shadow-panel), 0 0 12px var(--gold-dim) !important;
+}
+
+.task-card--done:hover { transform: none; }
+
+/* Priority stripe — left edge color indicator */
+.task-priority-stripe {
+  width: 4px;
+  flex-shrink: 0;
+  border-radius: 0;
+}
+.priority-legendary { background: var(--legendary); box-shadow: 2px 0 8px var(--legendary-glow); }
+.priority-high       { background: var(--high);      box-shadow: 2px 0 8px var(--high-glow); }
+.priority-normal     { background: var(--crystal); }
+.priority-low        { background: var(--low); }
+
+.task-content {
+  flex: 1;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.task-title {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  flex: 1;
+}
+
+.task-title--done {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.task-checkmark {
+  color: var(--gold);
+  margin-right: 6px;
+  font-size: 0.75rem;
+}
+
+.task-xp-badge {
+  flex-shrink: 0;
+  font-size: 0.68rem !important;
+}
+
+.task-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.task-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.task-due {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.task-complete-btn {
+  padding: 5px 12px !important;
+  font-size: 0.78rem !important;
+  gap: 5px !important;
+}
+
+.task-done-label {
+  font-size: 0.72rem;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.task-delete-btn {
+  color: var(--text-muted) !important;
+  font-size: 0.75rem !important;
+  width: 28px; height: 28px;
+}
+.task-delete-btn:hover { color: var(--legendary) !important; }
+
+/* Legendary card gets an extra outer glow */
+.task-card--legendary {
+  box-shadow: var(--shadow-panel), 0 0 16px var(--legendary-glow) !important;
+}
