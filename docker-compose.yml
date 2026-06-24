@@ -1,0 +1,88 @@
+# ============================================================
+# docker-compose.yml — BetterKanban RPG
+#
+# 🍺 Tavern Kitchen Analogy:
+#   This file is the KITCHEN BLUEPRINT.
+#   It tells Docker exactly which stations to build,
+#   what equipment each station has, and how they talk to each other.
+#
+# For LOCAL DEVELOPMENT only — not for production.
+# In production, Kubernetes (the Head Chef) takes over.
+# ============================================================
+
+services:
+
+  # ─────────────────────────────────────────────
+  # THE COLD STORE — PostgreSQL Database
+  # This is the sealed booth where ALL our data lives.
+  # It uses the official postgres:16 image (a pre-built blueprint).
+  # Why version 16? Latest stable — has pg_stat_io and better
+  # VACUUM performance we'll benefit from at scale.
+  # ─────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine          # alpine = minimal OS, smaller image (~100MB vs 400MB)
+    container_name: betterkanban_db
+    restart: unless-stopped            # auto-restart if it crashes, but not on manual stop
+    environment:
+      POSTGRES_DB: betterkanban        # the database name we'll connect to
+      POSTGRES_USER: kanban_user       # our app's DB username
+      POSTGRES_PASSWORD: ${DB_PASSWORD} # loaded from .env — NEVER hardcode this
+    ports:
+      - "5432:5432"                    # host:container — exposes DB to your local machine
+                                       # so tools like pgAdmin or DBeaver can connect
+    volumes:
+      - postgres_data:/var/lib/postgresql/data   # named volume: data survives container restarts
+      - ./server/migrations:/docker-entrypoint-initdb.d  # AUTO-RUNS all .sql files on first boot!
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kanban_user -d betterkanban"]
+      interval: 10s                    # check every 10 seconds
+      timeout: 5s                      # fail if no response in 5 seconds
+      retries: 5                       # try 5 times before marking as unhealthy
+    networks:
+      - kanban_network
+
+  # ─────────────────────────────────────────────
+  # PGADMIN — Database GUI (optional but very useful)
+  # A web-based tool to visually browse your PostgreSQL data.
+  # Think of it as a window into the cold store so you can
+  # see exactly what fruit (data) is on the shelves.
+  # Access it at: http://localhost:5050
+  # ─────────────────────────────────────────────
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: betterkanban_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}       # your login email for pgAdmin UI
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD} # your login password for pgAdmin UI
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres:
+        condition: service_healthy     # only start AFTER postgres passes its health check
+    networks:
+      - kanban_network
+
+# ─────────────────────────────────────────────
+# NAMED VOLUMES
+# Why a named volume instead of a bind mount?
+# Because a named volume is managed by Docker itself.
+# Even if you delete and recreate the container, the data
+# in the volume persists. Like a physical hard drive
+# that you can unplug and plug into a new computer.
+# ─────────────────────────────────────────────
+volumes:
+  postgres_data:
+    driver: local
+
+# ─────────────────────────────────────────────
+# NETWORKS
+# All services on the same network can talk to each other
+# by container name (e.g., the Express server connects to
+# host: "postgres" — Docker resolves that name internally).
+# Outside the network, only the exposed ports (5432, 5050)
+# are reachable from your host machine.
+# ─────────────────────────────────────────────
+networks:
+  kanban_network:
+    driver: bridge

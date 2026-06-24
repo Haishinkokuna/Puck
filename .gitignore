@@ -1,0 +1,44 @@
+# ─────────────────────────────────────────────
+# .gitignore — BetterKanban RPG
+# Why: These files must NEVER reach the remote repo.
+# node_modules is huge (thousands of files, all auto-generated).
+# .env holds secrets (DB passwords, JWT secrets) — if this ever
+# reaches GitHub, consider it compromised immediately.
+# ─────────────────────────────────────────────
+
+# Dependencies — auto-installed via npm install, never committed
+node_modules/
+
+# Environment variables — SECRETS live here, never commit
+.env
+.env.local
+.env.*.local
+
+# Build outputs — generated files, not source of truth
+dist/
+build/
+.next/
+
+# Logs — noisy, machine-specific
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files — machine-specific garbage
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor settings — personal preference, not project config
+.vscode/settings.json
+.idea/
+*.suo
+*.user
+
+# Docker volumes — local data, never shared
+postgres_data/
+
+# Test coverage reports
+coverage/
+.nyc_output/
