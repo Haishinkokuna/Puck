@@ -1,0 +1,557 @@
+/* ============================================================
+   index.css — BetterKanban RPG Design System
+   Kingdom Hearts 2 Aesthetic: Dark Navy, Crystal Blue, Ancient Gold
+   No Disney. Pure dark fantasy elegance.
+   ============================================================ */
+
+/* Google Fonts — Cinzel for headings (fantasy serif), Inter for body */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS — The single source of truth for every color,
+   shadow, and animation in the app.
+   Changing a token here updates every component automatically.
+   ───────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-void:      #08091A;
+  --bg-deep:      #0D1225;
+  --bg-surface:   #111830;
+  --bg-glass:     rgba(13, 18, 37, 0.80);
+  --bg-glass-2:   rgba(20, 30, 60, 0.60);
+
+  /* The KH2 Gold — ancient, warm, regal */
+  --gold:         #C8A84B;
+  --gold-bright:  #E8C060;
+  --gold-glow:    rgba(200, 168, 75, 0.35);
+  --gold-dim:     rgba(200, 168, 75, 0.15);
+
+  /* The KH2 Crystal Blue — the iconic menu glow */
+  --crystal:      #4A9EDB;
+  --aqua:         #7EC8E3;
+  --aqua-glow:    rgba(126, 200, 227, 0.25);
+  --aqua-dim:     rgba(74, 158, 219, 0.15);
+
+  /* Priority colors */
+  --legendary:    #E85D4A;
+  --legendary-glow: rgba(232, 93, 74, 0.3);
+  --high:         #E8A020;
+  --high-glow:    rgba(232, 160, 32, 0.3);
+  --normal:       var(--crystal);
+  --low:          #6B8FAB;
+
+  /* Text */
+  --text-primary: #FFFFFF;
+  --text-sub:     #A0B4C8;
+  --text-muted:   #5A7080;
+  --text-gold:    var(--gold);
+
+  /* Borders */
+  --border-glass:  rgba(126, 200, 227, 0.15);
+  --border-gold:   rgba(200, 168, 75, 0.40);
+  --border-active: rgba(126, 200, 227, 0.60);
+
+  /* Shadows — layered like KH2's floating UI elements */
+  --shadow-panel:  0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px var(--border-glass);
+  --shadow-gold:   0 0 20px var(--gold-glow), 0 0 40px rgba(200,168,75,0.1);
+  --shadow-crystal: 0 0 20px var(--aqua-glow), 0 0 40px rgba(74,158,219,0.1);
+  --shadow-card:   0 4px 24px rgba(0,0,0,0.5);
+  --shadow-legendary: 0 0 16px var(--legendary-glow);
+
+  /* Typography */
+  --font-heading: 'Cinzel', serif;     /* fantasy headings */
+  --font-body:    'Inter', sans-serif; /* all body text */
+
+  /* Transitions */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow:   0.4s ease;
+
+  /* Border radius */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  18px;
+  --radius-xl:  24px;
+}
+
+/* ─────────────────────────────────────────────
+   RESET + BASE
+   ───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* The signature KH2 background — starfield with subtle geometry */
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(74,158,219,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(200,168,75,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, rgba(8,9,26,1) 0%, transparent 100%);
+}
+
+/* Scrollbar — KH2 style, thin and dark */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb {
+  background: var(--crystal);
+  border-radius: 3px;
+  opacity: 0.5;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--aqua); }
+
+/* ─────────────────────────────────────────────
+   THE ANIMATED BACKGROUND — Floating geometric shapes
+   This recreates the KH2 menu's sense of depth and magic
+   ───────────────────────────────────────────── */
+.bg-orbs {
+  display: none;
+}
+
+.bg-orbs::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,158,219,0.08) 0%, transparent 70%);
+  top: -100px; left: -100px;
+  animation: orbDrift1 20s ease-in-out infinite alternate;
+}
+
+.bg-orbs::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,168,75,0.06) 0%, transparent 70%);
+  bottom: -100px; right: -100px;
+  animation: orbDrift2 25s ease-in-out infinite alternate;
+}
+
+@keyframes orbDrift1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(80px, 60px) scale(1.1); }
+}
+@keyframes orbDrift2 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-60px, -80px) scale(1.15); }
+}
+
+/* ─────────────────────────────────────────────
+   GLASS PANEL — The signature KH2 UI element
+   Dark, semi-transparent, with a luminous border
+   ───────────────────────────────────────────── */
+.glass-panel {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle inner top highlight — gives the "crystal" feel */
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(126,200,227,0.4), transparent);
+}
+
+.glass-panel--gold {
+  border-color: var(--border-gold);
+  box-shadow: var(--shadow-panel), var(--shadow-gold);
+}
+
+.glass-panel--crystal {
+  border-color: var(--border-active);
+  box-shadow: var(--shadow-panel), var(--shadow-crystal);
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY
+   ───────────────────────────────────────────── */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+h1 { font-size: 2rem;   color: var(--text-primary); }
+h2 { font-size: 1.4rem; color: var(--text-primary); }
+h3 { font-size: 1.1rem; color: var(--text-primary); }
+p  { color: var(--text-sub); line-height: 1.6; }
+
+.text-gold {
+  color: var(--gold);
+  text-shadow: 0 0 12px var(--gold-glow);
+}
+
+.text-crystal {
+  color: var(--aqua);
+  text-shadow: 0 0 10px var(--aqua-glow);
+}
+
+/* ─────────────────────────────────────────────
+   BUTTONS
+   ───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Primary — Gold, the action button */
+.btn-primary {
+  background: linear-gradient(135deg, #B8940A, var(--gold), #E8C060);
+  color: #08091A;
+  box-shadow: 0 4px 16px var(--gold-glow);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(200,168,75,0.5);
+  filter: brightness(1.1);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* Secondary — Crystal outline */
+.btn-secondary {
+  background: transparent;
+  color: var(--aqua);
+  border: 1px solid var(--border-active);
+  box-shadow: inset 0 0 16px var(--aqua-dim);
+}
+.btn-secondary:hover {
+  background: var(--aqua-dim);
+  box-shadow: 0 0 20px var(--aqua-glow), inset 0 0 16px var(--aqua-dim);
+  transform: translateY(-1px);
+}
+
+/* Ghost — minimal, for less prominent actions */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-sub);
+  border: 1px solid var(--border-glass);
+}
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--border-glass);
+  background: var(--bg-glass-2);
+}
+
+/* Danger — legendary red */
+.btn-danger {
+  background: rgba(232,93,74,0.15);
+  color: var(--legendary);
+  border: 1px solid rgba(232,93,74,0.4);
+}
+.btn-danger:hover {
+  background: rgba(232,93,74,0.25);
+  box-shadow: var(--shadow-legendary);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Icon-only button */
+.btn-icon {
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  font-size: 1rem;
+}
+.btn-icon:hover { color: var(--text-primary); background: var(--bg-glass-2); }
+
+/* ─────────────────────────────────────────────
+   INPUTS — Styled to match the glass UI
+   ───────────────────────────────────────────── */
+.input {
+  width: 100%;
+  background: rgba(8,9,26,0.6);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+.input::placeholder { color: var(--text-muted); }
+.input:focus {
+  border-color: var(--crystal);
+  box-shadow: 0 0 0 3px var(--aqua-dim), 0 0 12px var(--aqua-glow);
+}
+
+.input-group { display: flex; flex-direction: column; gap: 6px; }
+.input-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-sub);
+}
+.input-error { color: var(--legendary); font-size: 0.8rem; margin-top: 4px; }
+
+/* ─────────────────────────────────────────────
+   XP PROGRESS BAR — The crystal-clear KH HP bar feel
+   ───────────────────────────────────────────── */
+.xp-bar-container {
+  position: relative;
+  height: 8px;
+  background: rgba(8,9,26,0.8);
+  border-radius: 4px;
+  border: 1px solid var(--border-glass);
+  overflow: hidden;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--crystal), var(--aqua), #B8F0FF);
+  box-shadow: 0 0 10px var(--aqua-glow), 0 0 4px var(--aqua);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+/* Animated shimmer on the bar */
+.xp-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  to { left: 200%; }
+}
+
+/* ─────────────────────────────────────────────
+   BADGE / CHIP — Small status indicators
+   ───────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.badge-gold {
+  background: var(--gold-dim);
+  color: var(--gold-bright);
+  border: 1px solid var(--border-gold);
+}
+.badge-crystal {
+  background: var(--aqua-dim);
+  color: var(--aqua);
+  border: 1px solid rgba(126,200,227,0.3);
+}
+.badge-legendary {
+  background: rgba(232,93,74,0.15);
+  color: var(--legendary);
+  border: 1px solid rgba(232,93,74,0.3);
+  box-shadow: var(--shadow-legendary);
+}
+.badge-high {
+  background: rgba(232,160,32,0.12);
+  color: var(--high);
+  border: 1px solid rgba(232,160,32,0.3);
+}
+.badge-normal {
+  background: var(--aqua-dim);
+  color: var(--crystal);
+  border: 1px solid rgba(74,158,219,0.2);
+}
+.badge-low {
+  background: rgba(107,143,171,0.1);
+  color: var(--low);
+  border: 1px solid rgba(107,143,171,0.2);
+}
+
+/* ─────────────────────────────────────────────
+   LEVEL BADGE — The crown/level display
+   ───────────────────────────────────────────── */
+.level-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,168,75,0.2), rgba(8,9,26,0.8));
+  border: 2px solid var(--gold);
+  box-shadow: var(--shadow-gold), inset 0 0 12px var(--gold-dim);
+  position: relative;
+}
+
+.level-badge .level-num {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--gold-bright);
+  line-height: 1;
+}
+
+.level-badge .level-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────────
+   LOADING SPINNER
+   ───────────────────────────────────────────── */
+.spinner {
+  width: 32px; height: 32px;
+  border: 2px solid var(--border-glass);
+  border-top-color: var(--aqua);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-sm { width: 16px; height: 16px; border-width: 2px; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─────────────────────────────────────────────
+   TOAST / NOTIFICATION — Level-up alert
+   ───────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 32px; right: 32px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.toast-item {
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: toastIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: all;
+  max-width: 340px;
+}
+
+.toast-xp {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-gold);
+  box-shadow: var(--shadow-gold);
+  color: var(--gold-bright);
+  backdrop-filter: blur(16px);
+}
+
+.toast-levelup {
+  background: linear-gradient(135deg, rgba(13,18,37,0.95), rgba(20,30,60,0.95));
+  border: 1px solid var(--border-active);
+  box-shadow: var(--shadow-crystal), 0 8px 32px rgba(0,0,0,0.8);
+  color: var(--text-primary);
+  backdrop-filter: blur(20px);
+}
+
+@keyframes toastIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* ─────────────────────────────────────────────
+   MODAL OVERLAY — Level-up celebration
+   ───────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9990;
+  animation: fadeIn 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.modal {
+  max-width: 480px;
+  width: 90%;
+  padding: 40px;
+  text-align: center;
+  animation: modalIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalIn {
+  from { transform: scale(0.8) translateY(20px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* ─────────────────────────────────────────────
+   DIVIDER
+   ───────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
+  margin: 16px 0;
+}
+
+/* ─────────────────────────────────────────────
+   UTILITY CLASSES
+   ───────────────────────────────────────────── */
+.flex          { display: flex; }
+.flex-col      { display: flex; flex-direction: column; }
+.items-center  { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2         { gap: 8px; }
+.gap-3         { gap: 12px; }
+.gap-4         { gap: 16px; }
+.gap-6         { gap: 24px; }
+.w-full        { width: 100%; }
+.mt-1          { margin-top: 4px; }
+.mt-2          { margin-top: 8px; }
+.mt-4          { margin-top: 16px; }
+.p-4           { padding: 16px; }
+.p-6           { padding: 24px; }
+.truncate      { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.relative      { position: relative; }
+.z-10          { z-index: 10; }

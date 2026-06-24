@@ -1,0 +1,133 @@
+/* src/components/Board/BoardSettingsModal.css */
+.board-settings-modal {
+  max-width: 480px;
+  width: 100%;
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings-desc {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.task-types-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.task-type-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--type-color);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.task-type-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.type-icon {
+  color: var(--type-color);
+  filter: drop-shadow(0 0 8px var(--type-color));
+}
+
+.type-name {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.type-delete {
+  opacity: 0;
+  color: var(--danger);
+}
+
+.task-type-item:hover .type-delete {
+  opacity: 1;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 16px 0;
+}
+
+.new-type-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.icon-picker-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.icon-picker-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+}
+
+.icon-picker-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-light);
+  box-shadow: 0 0 10px rgba(74, 158, 219, 0.5);
+}
+
+.color-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.color-picker-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.color-picker-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-picker-btn.active {
+  border-color: #fff;
+  box-shadow: 0 0 12px currentColor;
+  transform: scale(1.1);
+}

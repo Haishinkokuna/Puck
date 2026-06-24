@@ -1,0 +1,96 @@
+/* src/components/ui/LevelUpModal.css */
+.levelup-modal {
+  position: relative;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 460px;
+  width: 90%;
+}
+
+/* Animated crystal rings that expand outward */
+.levelup-rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--crystal);
+  opacity: 0;
+  animation: ringExpand 3s ease-out infinite;
+}
+
+.ring-1 { width: 200px; height: 200px; animation-delay: 0s; }
+.ring-2 { width: 300px; height: 300px; animation-delay: 0.6s; }
+.ring-3 { width: 420px; height: 420px; animation-delay: 1.2s; }
+
+@keyframes ringExpand {
+  0%   { opacity: 0.6; transform: scale(0.3); }
+  100% { opacity: 0;   transform: scale(1.4); }
+}
+
+.levelup-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.levelup-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 10px var(--aqua-glow); }
+  to   { text-shadow: 0 0 20px var(--aqua-glow), 0 0 40px rgba(74,158,219,0.3); }
+}
+
+.levelup-divider {
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.levelup-you-are {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+  letter-spacing: 0.06em;
+}
+
+.levelup-new-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.levelup-class {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+.levelup-xp {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.levelup-btn {
+  margin-top: 8px;
+  padding: 12px 36px !important;
+  font-family: var(--font-heading) !important;
+  letter-spacing: 0.1em !important;
+}

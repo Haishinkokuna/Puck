@@ -1,0 +1,81 @@
+{
+  "app": {
+    "name": "Puck",
+    "tagline": "Your Quest Awaits"
+  },
+  "auth": {
+    "login": "Sign In",
+    "register": "Create Account",
+    "logout": "Logout",
+    "email": "Email Address",
+    "username": "Username",
+    "password": "Password",
+    "loginTitle": "Welcome Back, Hero",
+    "loginSubtitle": "Continue your quest",
+    "registerTitle": "Begin Your Journey",
+    "registerSubtitle": "Every legend starts somewhere",
+    "noAccount": "No account yet?",
+    "hasAccount": "Already a hero?",
+    "loading": "Authenticating..."
+  },
+  "board": {
+    "myBoards": "Quest Boards",
+    "newBoard": "New Board",
+    "boardName": "Board Name",
+    "description": "Description",
+    "createBoard": "Create Board",
+    "deleteBoard": "Delete Board",
+    "noBoards": "No boards yet. Create your first quest board!",
+    "tasks": "tasks"
+  },
+  "task": {
+    "newTask": "New Task",
+    "taskTitle": "Task Title",
+    "taskDesc": "Description",
+    "xpReward": "XP Reward",
+    "priority": "Priority",
+    "dueDate": "Due Date",
+    "createTask": "Create Task",
+    "complete": "Complete",
+    "completeTask": "Mark Complete",
+    "deleteTask": "Delete",
+    "alreadyDone": "Completed",
+    "priorities": {
+      "low":       "Low",
+      "normal":    "Normal",
+      "high":      "High",
+      "legendary": "Legendary"
+    }
+  },
+  "hud": {
+    "level":       "Level",
+    "xpToNext":    "XP to next level",
+    "totalXp":     "Total XP",
+    "class":       "Class",
+    "title":       "Title",
+    "leaderboard": "Leaderboard",
+    "rank":        "Rank"
+  },
+  "levelUp": {
+    "title":       "Level Up!",
+    "youAreNow":   "You are now a",
+    "xpEarned":    "XP Earned",
+    "continue":    "Continue",
+    "newClass":    "New Class Unlocked"
+  },
+  "errors": {
+    "generic":        "Something went wrong. Please try again.",
+    "unauthorized":   "Session expired. Please log in again.",
+    "emailTaken":     "An account with this email already exists.",
+    "invalidCreds":   "Invalid email or password.",
+    "taskDone":       "This task has already been completed."
+  },
+  "common": {
+    "save":    "Save",
+    "cancel":  "Cancel",
+    "delete":  "Delete",
+    "edit":    "Edit",
+    "loading": "Loading...",
+    "confirm": "Confirm"
+  }
+}
